@@ -157,6 +157,7 @@ list( APPEND ufo_test_input
   testinput/qc_thinning.yaml
   testinput/qc_temporal_thinning.yaml
   testinput/qc_temporal_thinning_unittests.yaml
+  testinput/qc_practical_boundscheck.yaml
   testinput/radiosonde.yaml
   testinput/radialvelocity.yaml
   testinput/reflectivity.yaml
@@ -1194,6 +1195,13 @@ ecbuild_add_test( TARGET  test_ufo_qc_trackcheck
                   ENVIRONMENT OOPS_TRAPFPE=1
                   DEPENDS test_ObsFilters.x
                   TEST_DEPENDS ufo_get_ioda_test_data ufo_get_ufo_test_data )
+
+ecbuild_add_test( TARGET  test_ufo_qc_gen_practical_boundscheck
+                  COMMAND ${CMAKE_BINARY_DIR}/bin/test_ObsFilters.x
+                  ARGS    "testinput/qc_practical_boundscheck.yaml"
+                  ENVIRONMENT OOPS_TRAPFPE=1
+                  DEPENDS test_ObsFilters.x
+                  TEST_DEPENDS ufo_get_ufo_test_data )
 
 ecbuild_add_test( TARGET  test_ufo_profileconsistencychecks_monolithicfilter
                   COMMAND ${CMAKE_BINARY_DIR}/bin/test_ObsFilters.x

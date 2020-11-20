@@ -13,6 +13,7 @@
 #include "ufo/filters/BackgroundCheck.h"
 #include "ufo/filters/BlackList.h"
 #include "ufo/filters/DifferenceCheck.h"
+#include "ufo/filters/PracticalBoundsCheck.h"
 #include "ufo/filters/Gaussian_Thinning.h"
 #include "ufo/filters/MetOfficeBuddyCheck.h"
 #include "ufo/filters/MWCLWCheck.h"
@@ -49,6 +50,8 @@ template<typename MODEL> void instantiateObsFilterFactory() {
            backgroundCheckMaker("Background Check");
   static oops::FilterMaker<MODEL, oops::ObsFilter<MODEL, ufo::DifferenceCheck> >
            differenceCheckMaker("Difference Check");
+  static oops::FilterMaker<MODEL, oops::ObsFilter<MODEL, ufo::PracticalBoundsCheck> >
+	   practicalBoundsCheckMaker("Practical Bounds Check");
   static oops::FilterMaker<MODEL, oops::ObsFilter<MODEL, ufo::ROobserror> >
            ROobserrorMaker("ROobserror");
   static oops::FilterMaker<MODEL, oops::ObsFilter<MODEL, ufo::Thinning> >
